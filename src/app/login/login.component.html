@@ -15,7 +15,7 @@
         </div>
         <div class="row mt-2">
           <div class="offset-4 col-4 d-flex">
-            <form [formGroup]="form" class="form-signin" (submit)="onSubmit();" style="width: 100%">
+            <form [formGroup]="loginForm" class="form-signin" (submit)="onSubmit();" style="width: 100%">
               <div class="mb-3">
                 <label for="inputEmail" class="sr-only" class="mb-2">Endereço de e-mail</label>
                 <input type="email" formControlName="email" class="form-control" autofocus />
@@ -24,7 +24,7 @@
                 <label for="inputPassword" class="sr-only" class="mb-2">Senha</label>
                 <input type="password" formControlName="password" class="form-control" />
               </div>
-              <button class="btn btn-sm btn-success" type="submit" [disabled]="!form.valid">Sign in!</button>
+              <button class="btn btn-sm btn-success" type="submit" [disabled]="!loginForm.valid">Sign in!</button>
           </form>
           </div>
         </div>
