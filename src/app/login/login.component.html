@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login!</title>
+    </head>
+    <body class="container">
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <h1 style="font-size: 100px; text-align: center" class="mb-5">Login!</h1>
+            <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="offset-4 col-4 d-flex">
+            <form [formGroup]="form" class="form-signin" (submit)="onSubmit();" style="width: 100%">
+              <div class="mb-3">
+                <label for="inputEmail" class="sr-only" class="mb-2">Endereço de e-mail</label>
+                <input type="email" formControlName="email" class="form-control" autofocus />
+              </div>
+              <div class="mb-3">
+                <label for="inputPassword" class="sr-only" class="mb-2">Senha</label>
+                <input type="password" formControlName="password" class="form-control" />
+              </div>
+              <button class="btn btn-sm btn-success" type="submit" [disabled]="!form.valid">Sign in!</button>
+          </form>
+          </div>
+        </div>
+    </body>
+</html>
