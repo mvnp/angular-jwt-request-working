@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { LoggedComponent } from './logged/logged.component';
 import { LoginComponent } from './login/login.component';
+import { LoggedComponent } from './logged/logged.component';
 
 import { AuthGuard } from './_helpers/auth.guard';
 

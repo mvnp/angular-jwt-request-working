@@ -11,6 +11,7 @@ import { LoggedComponent } from './logged/logged.component';
 import { AppRoutes } from './app.routing';
 
 import { AuthService } from './_helpers/auth.service';
+import { AuthGuard } from './_helpers/auth.guard';
 import { appInitializer } from './_helpers/app.initializer';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -31,9 +32,24 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
         }),
     ],
     providers: [
-        { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        AuthGuard,
+        AuthService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: appInitializer,
+            multi: true,
+            deps: [AuthService]
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true
+        },
     ],
     bootstrap: [AppComponent]
 })
