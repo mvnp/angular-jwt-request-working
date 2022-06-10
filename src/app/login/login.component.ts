@@ -12,10 +12,8 @@ import { AuthService } from '../_helpers/auth.service';
 export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
-    loading = false;
     submitted = false;
     returnUrl: string;
-    error = '';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,8 +29,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            email: ['mvnpereira@gmail.com', Validators.required],
-            password: ['1234567890', Validators.required],
+            email: ['financeiro@axitech.com.br', Validators.required],
+            password: ['password', Validators.required],
         });
 
         // get return url from route parameters or default to '/'
@@ -45,19 +43,20 @@ export class LoginComponent implements OnInit {
     onSubmit()
     {
         this.submitted = true;
+        console.log("start from login.component.ts ::: 0");
 
         // Stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
 
-        this.authService.login(this.f.username.value, this.f.password.value).pipe(first()).subscribe({
+        this.authService.login(this.f.email.value, this.f.password.value).pipe(first()).subscribe({
             next: () => {
                 this.router.navigate([this.returnUrl]);
             },
-            error: error => {
-                this.error = error;
-                this.loading = false;
+            error: (error: any) => {
+                // console.log("unauthorized from login.component.ts ::: X");
+                console.log(error);
             }
         });
 

@@ -25,11 +25,16 @@ export class AuthService
         return this.userSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/login`, { username, password }, { withCredentials: true })
+    login(email: string, password: string) {
+        console.log("init in auth.service.ts ::: 1");
+        return this.http.post<any>(`${environment.apiUrl}/login`, { email, password }, { withCredentials: true })
             .pipe(map(user => {
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer();
+                console.log("success login in auth.service.ts ::: 2");
+                console.log("Userdata logged in auth.service.ts ::: 3", user);
+
+                this.router.navigate(['/logged']);
                 return user;
             }));
     }
@@ -51,7 +56,7 @@ export class AuthService
     }
 
     // helper methods
-    private refreshTokenTimeout;
+    private refreshTokenTimeout: any;
 
     private startRefreshTokenTimer() {
         // parse json object from base64 encoded jwt token
